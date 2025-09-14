@@ -1,0 +1,263 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafbf8;
+  color: #141b0e;
+}
+
+/* Custom animations for vine decorations */
+@keyframes grow-vine {
+  0% {
+    stroke-dasharray: 0, 2000;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dasharray: 2000, 0;
+    opacity: 1;
+  }
+}
+
+@keyframes grow-leaves {
+  0% {
+    transform: scale(0) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(5deg);
+    opacity: 1;
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes leaf-bloom {
+  0% {
+    transform: scale(0) rotate(-20deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.3) rotate(10deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.vine-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.vine-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.vine-path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: grow-vine 3s ease-out forwards;
+}
+
+.vine-leaf {
+  transform-origin: center bottom;
+  opacity: 0;
+  animation: leaf-bloom 1s ease-out forwards;
+}
+
+.vine-leaf.animate-on-scroll {
+  animation-delay: var(--delay, 0s);
+}
+
+.vine-leaf:hover {
+  animation: sway 2s ease-in-out infinite;
+}
+
+/* Scroll-triggered animations */
+.vine-leaf.in-view {
+  animation: leaf-bloom 0.8s ease-out forwards;
+}
+
+.vine-decoration {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.vine-decoration.top {
+  top: 0;
+  transform: scaleY(-1);
+}
+
+.vine-decoration.bottom {
+  bottom: 0;
+}
+
+.vine-decoration.center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vine-decoration.corner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Hero Slider Animations */
+@keyframes slideInUp {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(79, 172, 254, 0.4);
+  }
+}
+
+/* Hero slider specific styles */
+.hero-text-animate {
+  animation: slideInUp 0.8s ease-out forwards;
+}
+
+.hero-button-animate {
+  animation: fadeInScale 0.6s ease-out forwards;
+}
+
+.hero-title-glow {
+  animation: textGlow 3s ease-in-out infinite;
+}
+
+.hero-button-glow:hover {
+  animation: pulseGlow 1s ease-in-out infinite;
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #66b319;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #559615;
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #66b319;
+  outline-offset: 2px;
+}
+
+/* Custom utility classes */
+.font-lexend {
+  font-family: 'Lexend', sans-serif;
+}
+
+.font-newsreader {
+  font-family: 'Newsreader', serif;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #66b319, #8ac348);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-medium {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.backdrop-blur-custom {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

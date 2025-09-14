@@ -2,6 +2,8 @@
 
 A comprehensive React.js web application for Amritam, a brand dedicated to promoting holistic lifestyle through traditional Indian wisdom and modern wellness practices.
 
+![Amritam Logo](./logo.png)
+
 ## 🌿 About Amritam
 
 Amritam is more than just an online store—it's a complete ecosystem that combines:
@@ -11,6 +13,9 @@ Amritam is more than just an online store—it's a complete ecosystem that combi
 - **Authentic natural products** including medicinal herbs, essential oils, Ayurvedic supplements, and agri-based foods
 - **Knowledge sharing** through heritage, wellness blogs, and educational content
 - **Community building** through programs, workshops, and collaborations
+
+### 🎯 Mission
+To bridge ancient wisdom with modern living, creating accessible pathways to holistic wellness for everyone.
 
 ## 🚀 Features
 
@@ -33,12 +38,14 @@ Amritam is more than just an online store—it's a complete ecosystem that combi
 ### Key Features
 - **Responsive Design** - Mobile-first approach with Tailwind CSS
 - **Modern UI/UX** - Clean, intuitive interface with smooth animations
-- **Component-Based Architecture** - Reusable React components
+- **Component-Based Architecture** - Reusable React components including Practitioners component
 - **Routing** - Client-side routing with React Router
 - **Search & Filtering** - Advanced product and content filtering
 - **Interactive Elements** - Modals, tabs, and dynamic content
 - **Accessibility** - WCAG compliant design patterns
 - **SEO Friendly** - Semantic HTML and meta tags
+- **Unique Image Management** - No duplicate images across services
+- **Professional Team Showcase** - Reusable Practitioners component across multiple pages
 
 ## 🛠️ Tech Stack
 
@@ -50,6 +57,12 @@ Amritam is more than just an online store—it's a complete ecosystem that combi
 - **Package Manager**: npm
 
 ## 📦 Installation & Setup
+
+### Prerequisites
+- Node.js 16+ and npm
+- Git
+
+### Quick Start
 
 1. **Clone the repository**
    ```bash
@@ -69,6 +82,57 @@ Amritam is more than just an online store—it's a complete ecosystem that combi
 
 4. **Open your browser**
    Navigate to `http://localhost:3000`
+
+### Environment Setup
+Create a `.env` file in the root directory (optional):
+```env
+REACT_APP_API_URL=your_api_endpoint
+REACT_APP_ANALYTICS_ID=your_analytics_id
+```
+
+### Build for Production
+```bash
+npm run build
+```
+The optimized build will be in the `build/` folder.
+
+### Deploy to GitHub Pages
+```bash
+npm run deploy
+```
+This will build and deploy your app to GitHub Pages automatically.
+
+## 🚀 Deployment
+
+### GitHub Pages Deployment
+
+This project is configured for automatic deployment to GitHub Pages at: **https://amritamlife.github.io/**
+
+#### Automatic Deployment
+- Pushes to `main` or `master` branch trigger automatic deployment via GitHub Actions
+- The site updates automatically within 2-5 minutes after pushing changes
+
+#### Manual Deployment
+To deploy manually:
+```bash
+npm run deploy
+```
+
+#### Setup Requirements
+1. **Repository Settings**: Go to repository Settings → Pages
+2. **Source**: Select "Deploy from a branch"
+3. **Branch**: Select `gh-pages` branch
+4. **Folder**: Select `/ (root)`
+
+#### GitHub Actions Workflows
+Two deployment workflows are available:
+- `deploy.yml` - Uses official GitHub Pages action
+- `deploy-gh-pages.yml` - Uses peaceiris/actions-gh-pages action
+
+#### SPA Routing Support
+- Includes 404.html for client-side routing support
+- React Router works seamlessly with GitHub Pages
+- Direct URL access to all routes is supported
 
 ## 🎨 Design System
 
@@ -110,7 +174,10 @@ src/
 │   ├── Header.js       # Navigation header
 │   ├── Footer.js       # Site footer
 │   ├── Layout.js       # Main layout wrapper
-│   └── Logo.js         # Brand logo component
+│   ├── Logo.js         # Brand logo component
+│   ├── Practitioners.js # Reusable team/practitioners showcase
+│   ├── VineDecoration.js # Decorative vine animations
+│   └── HeroSlider.js   # Hero section slider component
 ├── pages/              # Page components
 │   ├── Home.js         # Landing page
 │   ├── About.js        # About us page
@@ -129,6 +196,15 @@ src/
 ├── App.js              # Main app component with routing
 ├── index.js            # App entry point
 └── index.css           # Global styles and animations
+public/
+├── sample-images/      # Local image assets
+│   ├── meal-plans-*.png     # Service meal plan images
+│   ├── health-wellness-*.png # Health and wellness images
+│   ├── heritage-*.png       # Traditional heritage images
+│   ├── product-card-*.png   # Product showcase images
+│   └── food-herbs-*.png     # Food and herbs images
+├── logo.png           # Brand logo
+└── index.html         # HTML template
 ```
 
 ## 🎯 Key Features by Page
@@ -138,6 +214,7 @@ src/
 - Featured products and services showcase
 - Philosophy and mission statement
 - Decorative vine animations
+- Meet Our Practitioners section with professional team showcase
 
 ### Products Page
 - Category-based filtering
@@ -146,10 +223,17 @@ src/
 - Shopping cart integration ready
 
 ### Services Page
-- Detailed service descriptions
+- Detailed service descriptions with unique images
 - Modal popups with full information
 - Booking integration ready
-- Practitioner profiles
+- Professional practitioner profiles with credentials and specialties
+- Category-based service filtering
+
+### About Page
+- Company story and mission
+- Team expertise showcase using reusable Practitioners component
+- Values and commitments section
+- Professional team member profiles
 
 ### Blog & Knowledge Base
 - Article categorization and search
@@ -178,6 +262,8 @@ src/
 - [ ] Set up content management system
 - [ ] Add real-time chat support
 - [ ] Implement push notifications
+- [ ] Database integration for dynamic content
+- [ ] Image optimization and CDN integration
 
 ### Features
 - [ ] Advanced search with filters
@@ -197,6 +283,30 @@ src/
 - [ ] Integration with fitness apps
 - [ ] Recipe calculator
 
+## 🎨 Recent Updates
+
+### ✅ Completed
+- **Reusable Practitioners Component**: Created modular team showcase component
+- **Image Optimization**: Removed duplicate images across all services
+- **Component Architecture**: Improved code reusability and maintainability
+- **Professional Team Showcase**: Enhanced practitioner profiles with credentials
+- **Clean Repository**: Added comprehensive .gitignore file
+
+### 🔧 Component Usage
+```jsx
+// Basic usage
+<Practitioners />
+
+// Custom title and subtitle
+<Practitioners 
+  title="Meet Our Experts"
+  subtitle="Custom description text"
+/>
+
+// Without title section
+<Practitioners showTitle={false} />
+```
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -204,6 +314,13 @@ src/
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+### Development Guidelines
+- Follow React best practices and hooks patterns
+- Use Tailwind CSS for styling
+- Ensure responsive design across all breakpoints
+- Maintain accessibility standards
+- Write descriptive commit messages
 
 ## 📄 License
 
@@ -226,5 +343,21 @@ For support and questions:
 
 ---
 
-**Built with ❤️ for holistic wellness and traditional wisdom**
-# amritamlife
+## 📊 Project Status
+
+**Live URL**: [https://amritamlife.github.io/](https://amritamlife.github.io/)  
+**Current Version**: 1.0.0  
+**Status**: Active Development  
+**Last Updated**: December 2024  
+
+### 📈 Stats
+- **Pages**: 12+ functional pages
+- **Components**: 5+ reusable components
+- **Images**: 20+ optimized local assets
+- **Features**: Responsive design, SEO-ready, accessibility compliant
+- **Deployment**: Automated GitHub Pages deployment
+
+---
+
+**Built with ❤️ for holistic wellness and traditional wisdom**  
+*Amritam - Where Ancient Wisdom Meets Modern Wellness*
